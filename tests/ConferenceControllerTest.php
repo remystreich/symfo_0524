@@ -12,10 +12,9 @@ class ConferenceControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/');
         static::assertResponseIsSuccessful();
         static::assertSelectorTextContains('h2', 'Give your feedback!');
-
     }
 
-    public function testCommentSubmission() : void
+    public function testCommentSubmission(): void
     {
         $client = static::createClient();
         $client->request('GET', '/conference/amsterdam-2019');
@@ -30,7 +29,7 @@ class ConferenceControllerTest extends WebTestCase
         static::assertSelectorExists('div:contains("There are 2 comments")');
     }
 
-    public function testConferencePage() : void
+    public function testConferencePage(): void
     {
         $client = static::createClient();
         $crawler = $client->request('GET', '/');
@@ -40,8 +39,5 @@ class ConferenceControllerTest extends WebTestCase
         static::assertResponseIsSuccessful();
         static::assertSelectorTextContains('h2', 'Amsterdam 2019');
         static::assertSelectorExists('div:contains("There are 1 comments")');
-
     }
-
-
 }
