@@ -15,19 +15,6 @@ class ConferenceControllerTest extends WebTestCase
 
     }
 
-    public function testConferencePage() : void
-    {
-        $client = static::createClient();
-        $crawler = $client->request('GET', '/');
-        static::assertCount(2, $crawler->filter('h4'));
-        $client->clickLink('View');
-        static::assertPageTitleContains('Amsterdam');
-        static::assertResponseIsSuccessful();
-        static::assertSelectorTextContains('h2', 'Amsterdam 2019');
-        static::assertSelectorExists('div:contains("There are 1 comments")');
-
-    }
-
     public function testCommentSubmission() : void
     {
         $client = static::createClient();
@@ -42,4 +29,19 @@ class ConferenceControllerTest extends WebTestCase
         $client->followRedirect();
         static::assertSelectorExists('div:contains("There are 2 comments")');
     }
+
+    public function testConferencePage() : void
+    {
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/');
+        static::assertCount(2, $crawler->filter('h4'));
+        $client->clickLink('View');
+        static::assertPageTitleContains('Amsterdam');
+        static::assertResponseIsSuccessful();
+        static::assertSelectorTextContains('h2', 'Amsterdam 2019');
+        static::assertSelectorExists('div:contains("There are 1 comments")');
+
+    }
+
+
 }
